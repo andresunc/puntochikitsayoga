@@ -1036,19 +1036,22 @@ ul {
 
 .service-badge {
     position: absolute;
-    top: var(--spacing-md);
-    right: var(--spacing-md);
+    top: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
     background-color: var(--terracotta);
     color: var(--white);
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.875rem;
     font-weight: 600;
+    z-index: 1;
 }
 
 .service-card-header {
     background-color: var(--surface);
-    padding: var(--spacing-lg);
+    padding: 3rem var(--spacing-lg) var(--spacing-lg);
     text-align: center;
 }
 
