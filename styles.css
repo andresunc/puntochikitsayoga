@@ -1184,6 +1184,30 @@ ul {
    CONTACT PAGE (contacto.html)
    ======================================== */
 
+.contact-methods {
+    background-image: url('assets/clase-ashtanga-shala-punto-chikitsa-yoga.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.contact-methods::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(247, 245, 242, 0.95);
+    z-index: 0;
+}
+
+.contact-methods .container {
+    position: relative;
+    z-index: 1;
+}
+
 .contact-grid {
     display: grid;
     gap: var(--spacing-lg);

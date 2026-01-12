@@ -156,16 +156,92 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Dynamic footer date
+// Dynamic footer date (managed by config.js now)
+// The updateFooterYear() function in config.js handles this
+
+/**
+ * Aplicar datos de contacto centralizados desde config.js
+ * Esta función reemplaza todos los enlaces y textos con los valores de CONFIG
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    const footerDate = document.getElementById('footer-date');
-
-    if (footerDate) {
-        const now = new Date();
-        const day = now.getDate();
-        const month = now.toLocaleDateString('es-AR', { month: 'long' });
-        const year = now.getFullYear();
-
-        footerDate.textContent = `${day} de ${month} de ${year}`;
+    // Solo ejecutar si CONFIG está disponible
+    if (typeof CONFIG === 'undefined') {
+        console.warn('CONFIG no está cargado. Asegurate de incluir config.js antes de script.js');
+        return;
     }
+
+    // Actualizar todos los enlaces de WhatsApp
+    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+    whatsappLinks.forEach(link => {
+        const href = link.getAttribute('href');
+
+        // Detectar qué tipo de mensaje es según el contexto
+        let messageKey = 'default';
+
+        if (href.includes('método de trabajo')) {
+            messageKey = 'services';
+        } else if (link.textContent.includes('1 a 1') || href.includes('1 a 1')) {
+            messageKey = 'one2one';
+        } else if (link.textContent.includes('grupal') || href.includes('grupo')) {
+            messageKey = 'group';
+        } else if (href.includes('in-company') || href.includes('empresa')) {
+            messageKey = 'company';
+        } else if (href.includes('zona')) {
+            messageKey = 'zone';
+        } else if (href.includes('dudas')) {
+            messageKey = 'doubts';
+        }
+
+        // Actualizar el href con la URL de WhatsApp correspondiente
+        link.setAttribute('href', getWhatsAppURL(messageKey));
+    });
+
+    // Actualizar textos que muestran el número de teléfono
+    const phoneDisplays = document.querySelectorAll('.contact-detail');
+    phoneDisplays.forEach(display => {
+        if (display.textContent.includes('+54')) {
+            display.textContent = CONFIG.whatsapp.displayNumber;
+        }
+    });
+
+    // Actualizar enlaces de email
+    const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+    emailLinks.forEach(link => {
+        const currentHref = link.getAttribute('href');
+
+        // Si es solo el mailto simple, actualizarlo
+        if (currentHref.includes('augustogarufa@gmail.com')) {
+            const newHref = currentHref.replace(/augustogarufa@gmail\.com/g, CONFIG.email);
+            link.setAttribute('href', newHref);
+        }
+
+        // Actualizar texto visible si muestra el email
+        if (link.textContent.includes('@')) {
+            link.textContent = CONFIG.email;
+        }
+    });
+
+    // Actualizar texto del email en contacto
+    const emailDisplays = document.querySelectorAll('.contact-detail');
+    emailDisplays.forEach(display => {
+        if (display.textContent.includes('@gmail.com')) {
+            display.textContent = CONFIG.email;
+        }
+    });
+
+    // Actualizar enlaces de Instagram
+    const instagramLinks = document.querySelectorAll('a[href*="instagram.com"]');
+    instagramLinks.forEach(link => {
+        link.setAttribute('href', CONFIG.instagram.url);
+    });
+
+    // Actualizar username de Instagram
+    const instagramDisplays = document.querySelectorAll('.contact-detail');
+    instagramDisplays.forEach(display => {
+        if (display.textContent.includes('@augustogarufa')) {
+            display.textContent = CONFIG.instagram.username;
+        }
+    });
+
+    console.log('✅ Datos de contacto centralizados aplicados correctamente');
 });
