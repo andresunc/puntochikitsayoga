@@ -118,28 +118,49 @@ if ('IntersectionObserver' in window) {
     document.addEventListener('DOMContentLoaded', addScrollAnimation);
 }
 
-// Form validation helper (for contacto.html)
+// WhatsApp Form Generator (for contacto.html)
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.form');
+    const form = document.getElementById('whatsapp-form');
 
     if (form) {
         form.addEventListener('submit', function(e) {
-            const requiredFields = form.querySelectorAll('[required]');
-            let isValid = true;
+            e.preventDefault();
 
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.style.borderColor = '#C26A4A';
-                } else {
-                    field.style.borderColor = '#EFE9E3';
-                }
-            });
+            // Obtener valores del formulario
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const zone = document.getElementById('zone').value.trim();
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value.trim();
 
-            if (!isValid) {
-                e.preventDefault();
+            // Validar campos obligatorios
+            if (!name || !email || !zone || !service) {
                 alert('Por favor completá todos los campos obligatorios.');
+                return;
             }
+
+            // Construir mensaje para WhatsApp
+            let whatsappMessage = `Hola Augusto, me contacto desde el formulario web.\n\n`;
+            whatsappMessage += `Nombre: ${name}\n`;
+            whatsappMessage += `Email: ${email}\n`;
+            whatsappMessage += `Zona: ${zone}\n`;
+            whatsappMessage += `Servicio de interés: ${service}`;
+
+            if (message) {
+                whatsappMessage += `\n\nMensaje:\n${message}`;
+            }
+
+            // Obtener número de WhatsApp desde CONFIG o usar el hardcoded
+            const whatsappNumber = (typeof CONFIG !== 'undefined') ? CONFIG.whatsapp.number : '+5493513081174';
+
+            // Codificar el mensaje para URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+
+            // Generar URL de WhatsApp
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            // Abrir WhatsApp
+            window.open(whatsappURL, '_blank');
         });
     }
 });

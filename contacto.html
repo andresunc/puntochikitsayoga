@@ -90,13 +90,13 @@
         </div>
     </section>
 
-    <!-- Contact Form (Optional - mailto) -->
+    <!-- Contact Form (WhatsApp Generator) -->
     <section class="contact-form section">
         <div class="container">
             <h2 class="section-title">Enviame un mensaje</h2>
-            <p class="form-intro">Completá el formulario y te respondo a la brevedad. También podés escribirme directamente por WhatsApp para una respuesta más rápida.</p>
+            <p class="form-intro">Completá el formulario y te contacto a la brevedad.</p>
 
-            <form class="form" action="mailto:augustogarufa@gmail.com" method="post" enctype="text/plain">
+            <form class="form" id="whatsapp-form">
                 <div class="form-group">
                     <label for="name">Nombre *</label>
                     <input type="text" id="name" name="name" required>
@@ -116,10 +116,10 @@
                     <label for="service">Servicio de interés *</label>
                     <select id="service" name="service" required>
                         <option value="">Seleccioná una opción</option>
-                        <option value="1a1">Clase 1 a 1 a domicilio</option>
-                        <option value="grupo">Grupo pequeño a domicilio</option>
-                        <option value="empresa">Clases in-company</option>
-                        <option value="otro">Otra consulta</option>
+                        <option value="Clase 1 a 1 a domicilio">Clase 1 a 1 a domicilio</option>
+                        <option value="Grupo pequeño a domicilio">Grupo pequeño a domicilio</option>
+                        <option value="Clases in-company">Clases in-company</option>
+                        <option value="Otra consulta">Otra consulta</option>
                     </select>
                 </div>
 
@@ -128,9 +128,9 @@
                     <textarea id="message" name="message" rows="5" placeholder="Contame un poco sobre tu experiencia con yoga, objetivos o cualquier duda que tengas..."></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                <button type="submit" class="btn btn-primary">Enviar mensaje por WhatsApp</button>
 
-                <p class="form-note">* Campos obligatorios. Al enviar este formulario se abrirá tu cliente de email predeterminado.</p>
+                <p class="form-note">* Campos obligatorios</p>
             </form>
         </div>
     </section>
