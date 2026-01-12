@@ -155,3 +155,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Dynamic footer date
+document.addEventListener('DOMContentLoaded', function() {
+    const footerDate = document.getElementById('footer-date');
+
+    if (footerDate) {
+        const now = new Date();
+        const day = now.getDate();
+        const month = now.toLocaleDateString('es-AR', { month: 'long' });
+        const year = now.getFullYear();
+
+        footerDate.textContent = `${day} de ${month} de ${year}`;
+    }
+});

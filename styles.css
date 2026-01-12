@@ -903,6 +903,25 @@ ul {
     color: var(--surface);
 }
 
+.footer-bottom p {
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer-dev {
+    font-size: 0.813rem;
+    opacity: 0.8;
+}
+
+.footer-dev a {
+    color: var(--surface);
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+
+.footer-dev a:hover {
+    opacity: 0.7;
+}
+
 @media (min-width: 768px) {
     .footer-grid {
         grid-template-columns: repeat(3, 1fr);
