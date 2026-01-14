@@ -15,8 +15,8 @@ const CONFIG = {
 
     // Contacto
     whatsapp: {
-        number: "+5493513081174",
-        displayNumber: "+54 9 351 308 1174",
+        number: "+5493512018222",
+        displayNumber: "+54 9 351 201 8222",
         // Mensajes predeterminados
         messages: {
             default: "Hola Augusto, quiero consultar por clases de Ashtanga a domicilio.",
